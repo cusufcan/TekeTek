@@ -1,4 +1,4 @@
-package com.cusufcan.teketek.ui.debate
+package com.cusufcan.teketek.ui.presentation.debate
 
 import android.os.Bundle
 import android.view.LayoutInflater

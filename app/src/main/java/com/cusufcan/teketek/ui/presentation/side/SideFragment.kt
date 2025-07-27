@@ -1,21 +1,21 @@
-package com.cusufcan.teketek.ui.summary
+package com.cusufcan.teketek.ui.presentation.side
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.cusufcan.teketek.databinding.FragmentSummaryBinding
+import com.cusufcan.teketek.databinding.FragmentSideBinding
 
-class SummaryFragment : Fragment() {
-    private var _binding: FragmentSummaryBinding? = null
+class SideFragment : Fragment() {
+    private var _binding: FragmentSideBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        _binding = FragmentSummaryBinding.inflate(inflater, container, false)
+        _binding = FragmentSideBinding.inflate(inflater, container, false)
         return binding.root
     }
 
