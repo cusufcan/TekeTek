@@ -1,4 +1,4 @@
-package com.cusufcan.teketek
+package com.cusufcan.teketek.ui.main
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
