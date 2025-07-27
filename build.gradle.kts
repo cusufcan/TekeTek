@@ -10,4 +10,7 @@ plugins {
 
     // Navigation Safeargs
     alias(libs.plugins.navigation.safeargs.kotlin) apply false
+
+    // Parcelize
+    alias(libs.plugins.kotlin.parcelize) apply false
 }

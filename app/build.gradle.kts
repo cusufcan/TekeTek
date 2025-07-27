@@ -15,6 +15,9 @@ plugins {
 
     // Navigation Safergs
     alias(libs.plugins.navigation.safeargs.kotlin)
+
+    // Parcelize
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
