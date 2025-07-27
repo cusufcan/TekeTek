@@ -18,6 +18,9 @@ plugins {
 
     // Parcelize
     alias(libs.plugins.kotlin.parcelize)
+
+    // Google Services
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -86,4 +89,7 @@ dependencies {
     // Kotlin Coroutines
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
+
+    // Firebase BoM
+    implementation(platform(libs.firebase.bom))
 }
