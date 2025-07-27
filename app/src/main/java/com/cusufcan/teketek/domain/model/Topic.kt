@@ -1,0 +1,11 @@
+package com.cusufcan.teketek.domain.model
+
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Topic(
+    val id: String,
+    val title: String,
+    val description: String,
+) : Parcelable
