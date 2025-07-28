@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TekeTek</string>
+
+    <!-- Accessibility -->
+    <string name="send">Send</string>
+
+    <!-- General -->
+    <string name="write_your_argument">Write your argument…</string>
+    <string name="choose_a_topic">Choose a Topic</string>
 </resources>

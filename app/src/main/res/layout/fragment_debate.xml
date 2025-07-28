@@ -42,10 +42,10 @@
             android:id="@+id/messageEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Mesajınızı yazın..."
+            android:hint="@string/write_your_argument"
             android:importantForAutofill="no"
             android:inputType="text"
+            android:layout_weight="1"
             android:minHeight="48dp"
             android:padding="12dp" />
 
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@android:drawable/ic_menu_send"
-            android:contentDescription="Gönder"
+            android:contentDescription="@string/send"
             android:background="?selectableItemBackgroundBorderless"
             app:tint="?attr/colorPrimary" />
     </LinearLayout>

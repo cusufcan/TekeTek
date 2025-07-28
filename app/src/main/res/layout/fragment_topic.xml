@@ -10,7 +10,7 @@
         android:id="@+id/textTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Bir Konu Seç"
+        android:text="@string/choose_a_topic"
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
