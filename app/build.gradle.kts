@@ -92,4 +92,8 @@ dependencies {
 
     // Firebase BoM
     implementation(platform(libs.firebase.bom))
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 }
