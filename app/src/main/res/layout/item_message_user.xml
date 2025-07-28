@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="4dp"
-    android:gravity="end"
-    android:orientation="horizontal">
-
-    <androidx.constraintlayout.widget.Placeholder
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="0dp" />
+    android:padding="4dp">
 
     <TextView
         android:id="@+id/messageText"
@@ -18,6 +12,10 @@
         android:background="@drawable/bg_user_message"
         android:textColor="@android:color/white"
         android:textSize="14sp"
-        android:layout_weight="4"
-        android:padding="12dp" />
-</LinearLayout>
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="wrap"
+        app:layout_constraintWidth_percent="0.75" />
+</androidx.constraintlayout.widget.ConstraintLayout>
