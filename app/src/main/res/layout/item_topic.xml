@@ -5,14 +5,14 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true"
-    app:cardCornerRadius="12dp"
-    app:cardUseCompatPadding="true">
+    app:cardCornerRadius="@dimen/radius_md"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="@dimen/padding_md">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textTitle"
@@ -26,6 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:paddingTop="4dp" />
+            android:layout_marginTop="@dimen/padding_xsm" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
