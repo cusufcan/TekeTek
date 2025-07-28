@@ -12,18 +12,18 @@
         tools:layout="@layout/fragment_topic">
         <action
             android:id="@+id/action_topicFragment_to_sideFragment"
-            app:destination="@id/sideFragment"
+            app:destination="@id/debateFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
-        android:id="@+id/sideFragment"
-        android:name="com.cusufcan.teketek.ui.presentation.side.SideFragment"
-        android:label="fragment_side"
-        tools:layout="@layout/fragment_side">
+        android:id="@+id/debateFragment"
+        android:name="com.cusufcan.teketek.ui.presentation.debate.DebateFragment"
+        android:label="fragment_debate"
+        tools:layout="@layout/fragment_debate">
         <argument
-            android:name="selectedTopic"
+            android:name="topic"
             app:argType="com.cusufcan.teketek.domain.model.Topic" />
     </fragment>
 </navigation>
