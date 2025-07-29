@@ -34,39 +34,59 @@
         android:layout_height="@dimen/zero"
         android:padding="@dimen/padding_sm"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/messageInputLayout"
+        app:layout_constraintBottom_toTopOf="@id/inputDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleDivider" />
 
-    <LinearLayout
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/inputDivider"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/messageInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/messageInputLayout" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/messageInputLayout"
         android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:background="@color/message_input_background"
         android:padding="@dimen/padding_sm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/chatRecyclerView">
+        app:layout_constraintTop_toBottomOf="@id/inputDivider">
 
         <EditText
             android:id="@+id/messageEditText"
             android:layout_width="@dimen/zero"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/size_md"
+            android:background="@drawable/bg_message_input"
             android:hint="@string/write_your_argument"
             android:importantForAutofill="no"
+            android:paddingHorizontal="@dimen/padding_md"
             android:inputType="text"
-            android:layout_weight="1"
-            android:padding="@dimen/padding_md" />
+            android:textColor="@android:color/black"
+            android:layout_marginEnd="@dimen/padding_sm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/sendButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/sendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_send"
+            android:background="@drawable/bg_send_button"
+            android:src="@drawable/ic_send"
             android:contentDescription="@string/send"
-            android:background="?selectableItemBackgroundBorderless"
-            app:tint="?attr/colorPrimary" />
-    </LinearLayout>
+            android:scaleType="centerInside"
+            android:padding="@dimen/padding_sm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@android:color/white" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
