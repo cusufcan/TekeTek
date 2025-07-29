@@ -34,6 +34,7 @@ class DebateFragment : Fragment() {
 
     private val args: DebateFragmentArgs by navArgs()
 
+    private lateinit var textEmpty: TextView
     private lateinit var topicText: TextView
     private lateinit var recyclerView: RecyclerView
     private lateinit var sendButton: ImageButton
@@ -57,6 +58,7 @@ class DebateFragment : Fragment() {
     }
 
     private fun bindViews() {
+        textEmpty = binding.textEmpty
         recyclerView = binding.chatRecyclerView
         topicText = binding.topicText
         sendButton = binding.sendButton
@@ -82,12 +84,6 @@ class DebateFragment : Fragment() {
                 imm.hideSoftInputFromWindow(view?.windowToken, 0)
             }
         }
-
-        messageEditText.setOnEditorActionListener { _, _, _ ->
-            sendButton.performClick()
-            messageEditText.clearFocus()
-            false
-        }
     }
 
     private fun bindArgs() {
@@ -100,6 +96,7 @@ class DebateFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.messages.collectLatest { messageList ->
                     if (messageList.isEmpty()) return@collectLatest
+                    binding.textEmpty.visibility = View.GONE
                     chatAdapter.submitMessage(messageList.last())
                     recyclerView.smoothScrollToPosition(chatAdapter.itemCount - 1)
                 }

@@ -13,6 +13,7 @@
         android:textColor="@android:color/white"
         android:textAppearance="?attr/textAppearanceLabelMedium"
         android:padding="@dimen/padding_md"
+        android:textAlignment="textEnd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

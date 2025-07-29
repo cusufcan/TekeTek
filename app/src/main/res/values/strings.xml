@@ -7,4 +7,5 @@
     <!-- General -->
     <string name="write_your_argument">Write your argument…</string>
     <string name="choose_a_topic">Choose a Topic</string>
+    <string name="you_can_start_argument">You can start writing your argument.</string>
 </resources>

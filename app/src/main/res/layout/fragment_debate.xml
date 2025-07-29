@@ -8,6 +8,16 @@
     tools:context=".ui.presentation.debate.DebateFragment">
 
     <TextView
+        android:id="@+id/textEmpty"
+        android:layout_width="wrap_content"
+        android:text="@string/you_can_start_argument"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/topicText"
         android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
@@ -62,12 +72,13 @@
         <EditText
             android:id="@+id/messageEditText"
             android:layout_width="@dimen/zero"
-            android:layout_height="@dimen/size_md"
+            android:layout_height="wrap_content"
             android:background="@drawable/bg_message_input"
             android:hint="@string/write_your_argument"
             android:importantForAutofill="no"
-            android:paddingHorizontal="@dimen/padding_md"
-            android:inputType="text"
+            android:maxHeight="@dimen/max_height"
+            android:padding="@dimen/padding_md"
+            android:inputType="textMultiLine"
             android:textColor="@android:color/black"
             android:layout_marginEnd="@dimen/padding_sm"
             app:layout_constraintBottom_toBottomOf="parent"
