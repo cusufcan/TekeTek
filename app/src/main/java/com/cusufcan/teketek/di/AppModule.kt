@@ -1,10 +1,13 @@
 package com.cusufcan.teketek.di
 
+import com.cusufcan.teketek.BuildConfig
 import com.cusufcan.teketek.data.remote.GeminiApi
+import com.cusufcan.teketek.data.remote.TopicService
 import com.cusufcan.teketek.data.repository.DebateRepositoryImpl
 import com.cusufcan.teketek.data.repository.GeminiRepositoryImpl
 import com.cusufcan.teketek.domain.repository.DebateRepository
 import com.cusufcan.teketek.domain.repository.GeminiRepository
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,8 +21,18 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun provideDebateRepository(): DebateRepository {
-        return DebateRepositoryImpl()
+    fun provideFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideTopicService(firestore: FirebaseFirestore): TopicService {
+        return TopicService(firestore)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDebateRepository(topicService: TopicService): DebateRepository {
+        return DebateRepositoryImpl(topicService)
     }
 
     @Provides
@@ -31,7 +44,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit =
-        Retrofit.Builder().baseUrl("https://teketek-backend.onrender.com")
+        Retrofit.Builder().baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create()).build()
 
     @Provides

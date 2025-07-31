@@ -35,6 +35,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+            "String",
+            "BASE_URL",
+            "\"${project.findProperty("BASE_URL")}\""
+        )
     }
 
     buildTypes {
@@ -57,6 +63,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -92,6 +99,9 @@ dependencies {
 
     // Firebase BoM
     implementation(platform(libs.firebase.bom))
+
+    // Firebase Firestore
+    implementation(libs.google.firebase.firestore)
 
     // Retrofit
     implementation(libs.retrofit)

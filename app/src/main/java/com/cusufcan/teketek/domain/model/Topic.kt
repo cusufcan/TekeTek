@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Topic(
-    val id: String,
-    val title: String,
-    val description: String,
+    val id: String = "",
+    val title: String = "",
+    val description: String = "",
 ) : Parcelable
