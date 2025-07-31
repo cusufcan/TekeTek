@@ -21,7 +21,7 @@
         android:id="@+id/toolbarLayout"
         android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/padding_sm"
+        android:paddingHorizontal="@dimen/padding_md"
         android:layout_marginBottom="@dimen/padding_sm"
         app:layout_constraintBottom_toTopOf="@id/titleDivider"
         app:layout_constraintEnd_toEndOf="parent"

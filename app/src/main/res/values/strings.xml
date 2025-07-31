@@ -6,7 +6,10 @@
     <string name="close">Close</string>
 
     <!-- General -->
+    <string name="welcome">Welcome</string>
     <string name="write_your_argument">Write your argument…</string>
     <string name="choose_a_topic">Choose a Topic</string>
     <string name="you_can_start_argument">You can start writing your argument.</string>
+    <string name="lets_start">Let\'s Start</string>
+    <string name="subtitle">Share your opinion, and let artificial intelligence respond with a counter-argument. A real-time debate experience awaits you!</string>
 </resources>

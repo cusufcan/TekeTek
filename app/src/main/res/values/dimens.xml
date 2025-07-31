@@ -6,6 +6,7 @@
     <dimen name="padding_sm">8dp</dimen>
     <dimen name="padding_md">12dp</dimen>
     <dimen name="padding_lg">16dp</dimen>
+    <dimen name="padding_xlg">32dp</dimen>
 
     <dimen name="radius_md">8dp</dimen>
     <dimen name="radius_lg">16dp</dimen>
