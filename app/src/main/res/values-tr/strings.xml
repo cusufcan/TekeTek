@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">TekeTek</string>
     <string name="send">Gönder</string>
+    <string name="close">Kapat</string>
     <string name="write_your_argument">Argümanını yaz…</string>
     <string name="choose_a_topic">Bir Konu Seç</string>
     <string name="you_can_start_argument">Argümanınızı yazmaya başlayabilirsiniz.</string>

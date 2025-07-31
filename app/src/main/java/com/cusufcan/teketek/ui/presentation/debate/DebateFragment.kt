@@ -10,6 +10,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -40,8 +42,11 @@ class DebateFragment : Fragment() {
     private lateinit var topicText: TextView
     private lateinit var recyclerView: RecyclerView
     private lateinit var sendButton: ImageButton
+    private lateinit var closeButton: ImageButton
     private lateinit var messageEditText: EditText
     private lateinit var typingAnimation: LottieAnimationView
+
+    private lateinit var onBackPressedCallback: OnBackPressedCallback
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,6 +70,7 @@ class DebateFragment : Fragment() {
         recyclerView = binding.chatRecyclerView
         topicText = binding.topicText
         sendButton = binding.sendButton
+        closeButton = binding.closeButton
         messageEditText = binding.messageEditText
         typingAnimation = binding.typingAnimation
     }
@@ -75,6 +81,8 @@ class DebateFragment : Fragment() {
     }
 
     private fun bindEvents() {
+        bindBackPressed()
+
         sendButton.setOnClickListener {
             val userMessage = messageEditText.text.toString().trim()
             if (userMessage.isNotEmpty()) {
@@ -87,6 +95,16 @@ class DebateFragment : Fragment() {
                     requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(view?.windowToken, 0)
             }
+        }
+
+        closeButton.setOnClickListener {
+            onBackPressedCallback.handleOnBackPressed()
+        }
+    }
+
+    private fun bindBackPressed() {
+        onBackPressedCallback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            // TODO: Navigate to home screen
         }
     }
 

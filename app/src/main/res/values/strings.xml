@@ -3,6 +3,7 @@
 
     <!-- Accessibility -->
     <string name="send">Send</string>
+    <string name="close">Close</string>
 
     <!-- General -->
     <string name="write_your_argument">Write your argument…</string>
