@@ -21,10 +21,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.cusufcan.teketek.R
 import com.cusufcan.teketek.data.model.DebateRequest
 import com.cusufcan.teketek.databinding.FragmentDebateBinding
 import com.cusufcan.teketek.ui.adapter.chat.ChatAdapter
 import com.cusufcan.teketek.ui.viewmodel.DebateViewModel
+import com.cusufcan.teketek.util.Resource
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -105,7 +108,12 @@ class DebateFragment : Fragment() {
 
     private fun bindBackPressed() {
         onBackPressedCallback = requireActivity().onBackPressedDispatcher.addCallback(this) {
-            val action = DebateFragmentDirections.actionDebateFragmentToAlertDialogFragment()
+            val title = getString(R.string.end_debate_title)
+            val desc = getString(R.string.end_debate_desc)
+            val action = DebateFragmentDirections.actionDebateFragmentToAlertDialogFragment(
+                title,
+                desc,
+            )
             findNavController().navigate(action)
         }
     }
@@ -118,19 +126,34 @@ class DebateFragment : Fragment() {
     private fun observeData() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.messages.collectLatest { messageList ->
-                    if (messageList.isEmpty()) return@collectLatest
-                    binding.textEmpty.visibility = View.GONE
-                    chatAdapter.submitMessage(messageList.last())
-                    recyclerView.smoothScrollToPosition(chatAdapter.itemCount - 1)
-                }
-            }
-        }
+                viewModel.uiState.collectLatest { resource ->
+                    when (resource) {
+                        is Resource.Loading -> {
+                            showTypingIndicator()
+                        }
 
-        lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.isLoading.collectLatest { isLoading ->
-                    if (isLoading) showTypingIndicator() else hideTypingIndicator()
+                        is Resource.Success -> {
+                            hideTypingIndicator()
+                            val messageList = resource.data
+                            if (messageList.isEmpty()) {
+                                binding.textEmpty.visibility = View.VISIBLE
+                            } else {
+                                binding.textEmpty.visibility = View.GONE
+                                chatAdapter.submitMessage(messageList.last())
+                                recyclerView.smoothScrollToPosition(chatAdapter.itemCount - 1)
+                            }
+                        }
+
+                        is Resource.Error -> {
+                            hideTypingIndicator()
+                            Snackbar.make(
+                                requireActivity(),
+                                binding.root,
+                                resource.message,
+                                Snackbar.LENGTH_SHORT,
+                            ).show()
+                        }
+                    }
                 }
             }
         }
