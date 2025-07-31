@@ -96,4 +96,7 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+
+    // Lottie
+    implementation(libs.lottie)
 }

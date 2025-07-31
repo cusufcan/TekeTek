@@ -6,8 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cusufcan.teketek.databinding.ItemMessageAiBinding
 import com.cusufcan.teketek.databinding.ItemMessageUserBinding
 import com.cusufcan.teketek.domain.model.Message
+import kotlinx.coroutines.CoroutineScope
 
-class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ChatAdapter(
+    private val scope: CoroutineScope,
+    private val recyclerView: RecyclerView,
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val messages = mutableListOf<Message>()
 
     companion object {
@@ -34,7 +38,7 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             UserViewHolder(binding)
         } else {
             val binding = ItemMessageAiBinding.inflate(inflater, parent, false)
-            AiViewHolder(binding)
+            AiViewHolder(binding, scope, recyclerView)
         }
     }
 

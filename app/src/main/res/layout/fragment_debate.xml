@@ -44,10 +44,24 @@
         android:layout_height="@dimen/zero"
         android:padding="@dimen/padding_sm"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/inputDivider"
+        app:layout_constraintBottom_toTopOf="@id/typingAnimation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleDivider" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/typingAnimation"
+        android:layout_width="64dp"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        android:layout_marginStart="@dimen/padding_md"
+        android:layout_marginBottom="@dimen/padding_xsm"
+        app:layout_constraintBottom_toTopOf="@id/inputDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chatRecyclerView"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/typing" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/inputDivider"
@@ -56,7 +70,7 @@
         app:layout_constraintBottom_toTopOf="@id/messageInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/messageInputLayout" />
+        app:layout_constraintTop_toBottomOf="@id/typingAnimation" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/messageInputLayout"

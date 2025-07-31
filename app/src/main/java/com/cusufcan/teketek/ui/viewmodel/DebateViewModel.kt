@@ -20,12 +20,17 @@ class DebateViewModel @Inject constructor(
     private val _messages = MutableStateFlow<List<Message>>(emptyList())
     val messages: StateFlow<List<Message>> get() = _messages.asStateFlow()
 
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> get() = _isLoading.asStateFlow()
+
     fun sendUserMessage(request: DebateRequest) {
         appendMessage(Message(request.userArgument, fromAI = false))
 
         viewModelScope.launch {
+            _isLoading.value = true
             val aiReply = getCounterArgumentUseCase(request)
             appendMessage(Message(aiReply.counterArgument, fromAI = true))
+            _isLoading.value = false
         }
     }
 

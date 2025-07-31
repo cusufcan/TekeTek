@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageButton
@@ -16,6 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.cusufcan.teketek.data.model.DebateRequest
 import com.cusufcan.teketek.databinding.FragmentDebateBinding
 import com.cusufcan.teketek.ui.adapter.chat.ChatAdapter
@@ -39,6 +41,7 @@ class DebateFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var sendButton: ImageButton
     private lateinit var messageEditText: EditText
+    private lateinit var typingAnimation: LottieAnimationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,10 +66,11 @@ class DebateFragment : Fragment() {
         topicText = binding.topicText
         sendButton = binding.sendButton
         messageEditText = binding.messageEditText
+        typingAnimation = binding.typingAnimation
     }
 
     private fun bindAdapter() {
-        chatAdapter = ChatAdapter()
+        chatAdapter = ChatAdapter(lifecycleScope, recyclerView)
         recyclerView.adapter = chatAdapter
     }
 
@@ -102,6 +106,33 @@ class DebateFragment : Fragment() {
                 }
             }
         }
+
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isLoading.collectLatest { isLoading ->
+                    if (isLoading) showTypingIndicator() else hideTypingIndicator()
+                }
+            }
+        }
+    }
+
+    private fun showTypingIndicator() {
+        typingAnimation.visibility = View.VISIBLE
+        typingAnimation.scaleX = 0f
+        typingAnimation.scaleY = 0f
+        typingAnimation.alpha = 0f
+
+        typingAnimation.animate().scaleX(1f).scaleY(1f).alpha(1f).setDuration(400)
+            .setInterpolator(DecelerateInterpolator()).start()
+
+        typingAnimation.playAnimation()
+    }
+
+    private fun hideTypingIndicator() {
+        typingAnimation.animate().scaleX(0f).scaleY(0f).alpha(0f).setDuration(300).withEndAction {
+            typingAnimation.cancelAnimation()
+            typingAnimation.visibility = View.GONE
+        }.start()
     }
 
     override fun onDestroyView() {
