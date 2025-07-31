@@ -9,4 +9,8 @@
     <string name="you_can_start_argument">Argümanınızı yazmaya başlayabilirsiniz.</string>
     <string name="lets_start">Haydi Başlayalım</string>
     <string name="subtitle">Fikrini savun, yapay zekâ karşı argümanla cevap versin. Gerçek zamanlı bir münazara deneyimi seni bekliyor!</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="end_debate_title">Münazarayı Sonlandır</string>
+    <string name="end_debate_desc">Münazarayı gerçekten sonlandırmak istediğinize emin misiniz?</string>
 </resources>

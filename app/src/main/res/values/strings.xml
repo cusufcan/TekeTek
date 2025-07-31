@@ -12,4 +12,10 @@
     <string name="you_can_start_argument">You can start writing your argument.</string>
     <string name="lets_start">Let\'s Start</string>
     <string name="subtitle">Share your opinion, and let artificial intelligence respond with a counter-argument. A real-time debate experience awaits you!</string>
+
+    <!-- Alert Dialog -->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="end_debate_title">End the Debate</string>
+    <string name="end_debate_desc">Are you sure you want to end the debate?</string>
 </resources>

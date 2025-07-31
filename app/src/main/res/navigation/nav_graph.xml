@@ -34,6 +34,9 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_debateFragment_to_alertDialogFragment"
+            app:destination="@id/alertDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -53,4 +56,14 @@
         android:name="com.cusufcan.teketek.ui.presentation.summary.SummaryFragment"
         android:label="fragment_summary"
         tools:layout="@layout/fragment_summary" />
+    <dialog
+        android:id="@+id/alertDialogFragment"
+        android:name="com.cusufcan.teketek.ui.presentation.alert.AlertDialogFragment"
+        android:label="AlertDialogFragment">
+        <action
+            android:id="@+id/action_alertDialogFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </dialog>
 </navigation>
