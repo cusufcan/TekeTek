@@ -2,6 +2,8 @@
 <resources>
     <dimen name="zero">0dp</dimen>
 
+    <dimen name="stroke_lg">2dp</dimen>
+
     <dimen name="padding_xsm">4dp</dimen>
     <dimen name="padding_sm">8dp</dimen>
     <dimen name="padding_md">12dp</dimen>
