@@ -24,10 +24,10 @@ import com.airbnb.lottie.LottieAnimationView
 import com.cusufcan.teketek.R
 import com.cusufcan.teketek.data.model.DebateRequest
 import com.cusufcan.teketek.databinding.FragmentDebateBinding
+import com.cusufcan.teketek.domain.model.Message
 import com.cusufcan.teketek.ui.adapter.chat.ChatAdapter
 import com.cusufcan.teketek.ui.viewmodel.DebateViewModel
 import com.cusufcan.teketek.util.Resource
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -146,12 +146,8 @@ class DebateFragment : Fragment() {
 
                         is Resource.Error -> {
                             hideTypingIndicator()
-                            Snackbar.make(
-                                requireActivity(),
-                                binding.root,
-                                resource.message,
-                                Snackbar.LENGTH_SHORT,
-                            ).show()
+                            chatAdapter.submitMessage(Message(resource.message, true))
+                            recyclerView.smoothScrollToPosition(chatAdapter.itemCount - 1)
                         }
                     }
                 }

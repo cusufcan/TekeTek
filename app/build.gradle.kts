@@ -1,4 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.konan.properties.Properties
+import java.io.FileInputStream
 
 plugins {
     alias(libs.plugins.android.application)
@@ -36,10 +38,12 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
+        val localProperties = Properties()
+        localProperties.load(FileInputStream(rootProject.file("local.properties")))
         buildConfigField(
             "String",
             "BASE_URL",
-            "\"${project.findProperty("BASE_URL")}\""
+            "\"${localProperties.getProperty("BASE_URL")}\""
         )
     }
 
