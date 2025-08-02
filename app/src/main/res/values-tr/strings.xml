@@ -14,4 +14,6 @@
     <string name="no">Hayır</string>
     <string name="end_debate_title">Münazarayı Sonlandır</string>
     <string name="end_debate_desc">Münazarayı gerçekten sonlandırmak istediğinize emin misiniz?</string>
+    <string name="add_custom_topic">Özel Konu Ekle</string>
+    <string name="or">YA DA</string>
 </resources>

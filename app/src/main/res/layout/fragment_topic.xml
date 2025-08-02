@@ -34,8 +34,47 @@
         android:layout_height="@dimen/zero"
         android:paddingHorizontal="@dimen/padding_sm"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layoutAddTopic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textTitle" />
+
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/topicDivider"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/layoutAddTopic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewTopics" />
+
+    <LinearLayout
+        android:id="@+id/layoutAddTopic"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/padding_lg"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewTopics">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:layout_marginBottom="@dimen/padding_md"
+            android:text="@string/or" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonAddCustomTopic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/active"
+            android:text="@string/add_custom_topic"
+            app:cornerRadius="@dimen/radius_md" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

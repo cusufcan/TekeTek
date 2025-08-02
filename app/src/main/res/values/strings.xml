@@ -19,4 +19,6 @@
     <string name="no">No</string>
     <string name="end_debate_title">End the Debate</string>
     <string name="end_debate_desc">Are you sure you want to end the debate?</string>
+    <string name="add_custom_topic">Add Custom Topic</string>
+    <string name="or">OR</string>
 </resources>

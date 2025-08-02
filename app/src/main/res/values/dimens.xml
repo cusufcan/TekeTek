@@ -10,8 +10,10 @@
 
     <dimen name="radius_md">8dp</dimen>
     <dimen name="radius_lg">16dp</dimen>
+    <dimen name="radius_xlg">24dp</dimen>
 
     <dimen name="icon_md">32dp</dimen>
 
-    <dimen name="max_height">100dp</dimen>
+    <dimen name="height_md">56dp</dimen>
+    <dimen name="height_max">100dp</dimen>
 </resources>
