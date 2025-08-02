@@ -3,6 +3,7 @@
     <string name="app_name">TekeTek</string>
     <string name="send">Gönder</string>
     <string name="close">Kapat</string>
+    <string name="topic_icon">Konu İkonu</string>
     <string name="welcome">Hoşgeldiniz</string>
     <string name="write_your_argument">Argümanını yaz…</string>
     <string name="choose_a_topic">Bir Konu Seç</string>

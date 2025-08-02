@@ -14,11 +14,28 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textTitle"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:textAppearance="?attr/textAppearanceTitleMedium"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageTopicIcon"
+                android:layout_width="@dimen/icon_md"
+                android:contentDescription="@string/topic_icon"
+                android:scaleType="center"
+                android:layout_gravity="center"
+                android:layout_height="@dimen/icon_md" />
+
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/padding_sm"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:layout_height="wrap_content"
+                android:maxLines="2" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textDescription"

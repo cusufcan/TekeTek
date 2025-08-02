@@ -4,6 +4,7 @@
     <!-- Accessibility -->
     <string name="send">Send</string>
     <string name="close">Close</string>
+    <string name="topic_icon">Topic Icon</string>
 
     <!-- General -->
     <string name="welcome">Welcome</string>
