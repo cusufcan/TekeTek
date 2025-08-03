@@ -6,6 +6,12 @@
     <string name="close">Close</string>
     <string name="topic_icon">Topic Icon</string>
 
+    <!-- Alert Dialog -->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="end_debate_title">End the Debate</string>
+    <string name="end_debate_desc">Are you sure you want to end the debate?</string>
+
     <!-- General -->
     <string name="welcome">Welcome</string>
     <string name="write_your_argument">Write your argument…</string>
@@ -13,12 +19,8 @@
     <string name="you_can_start_argument">You can start writing your argument.</string>
     <string name="lets_start">Let\'s Start</string>
     <string name="subtitle">Share your opinion, and let artificial intelligence respond with a counter-argument. A real-time debate experience awaits you!</string>
-
-    <!-- Alert Dialog -->
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="end_debate_title">End the Debate</string>
-    <string name="end_debate_desc">Are you sure you want to end the debate?</string>
     <string name="add_custom_topic">Add Custom Topic</string>
     <string name="or">OR</string>
+    <string name="topic_name">Topic Name</string>
+    <string name="add">Add</string>
 </resources>

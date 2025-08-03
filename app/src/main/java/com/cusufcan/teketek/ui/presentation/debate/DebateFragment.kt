@@ -130,10 +130,12 @@ class DebateFragment : Fragment() {
                     when (resource) {
                         is Resource.Loading -> {
                             showTypingIndicator()
+                            sendButton.isEnabled = false
                         }
 
                         is Resource.Success -> {
                             hideTypingIndicator()
+                            sendButton.isEnabled = true
                             val messageList = resource.data
                             if (messageList.isEmpty()) {
                                 binding.textEmpty.visibility = View.VISIBLE
@@ -146,6 +148,7 @@ class DebateFragment : Fragment() {
 
                         is Resource.Error -> {
                             hideTypingIndicator()
+                            sendButton.isEnabled = true
                             chatAdapter.submitMessage(Message(resource.message, true))
                             recyclerView.smoothScrollToPosition(chatAdapter.itemCount - 1)
                         }

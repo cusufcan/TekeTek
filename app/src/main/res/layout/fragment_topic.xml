@@ -34,10 +34,19 @@
         android:layout_height="@dimen/zero"
         android:paddingHorizontal="@dimen/padding_sm"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/layoutAddTopic"
+        app:layout_constraintBottom_toTopOf="@id/addTopicDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textTitle" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/addTopicDivider"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/layoutAddTopic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewTopics" />
 
     <LinearLayout
         android:id="@+id/layoutAddTopic"
@@ -46,11 +55,10 @@
         android:gravity="center"
         android:padding="@dimen/padding_lg"
         android:orientation="vertical"
-        android:background="@drawable/top_rounded_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recyclerViewTopics">
+        app:layout_constraintTop_toBottomOf="@id/addTopicDivider">
 
         <TextView
             android:layout_width="match_parent"
@@ -65,6 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/active"
+            android:textColor="@android:color/white"
             android:text="@string/add_custom_topic"
             app:cornerRadius="@dimen/radius_md" />
     </LinearLayout>

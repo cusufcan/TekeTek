@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ai_message">#E0E0E0</color>
     <color name="active">#4CAF50</color>
+    <color name="passive">#A5D6A7</color>
 
-    <color name="stroke">#DDDDDD</color>
+    <color name="ai_message">#E0E0E0</color>
     <color name="message_input_background">#F5F5F5</color>
 </resources>

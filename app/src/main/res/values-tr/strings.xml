@@ -16,4 +16,6 @@
     <string name="end_debate_desc">Münazarayı gerçekten sonlandırmak istediğinize emin misiniz?</string>
     <string name="add_custom_topic">Özel Konu Ekle</string>
     <string name="or">YA DA</string>
+    <string name="topic_name">Konu İsmi</string>
+    <string name="add">Ekle</string>
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="passive">#66BB6A</color>
+
+    <color name="ai_message">#2C2C2C</color>
+    <color name="message_input_background">#1E1E1E</color>
+</resources>
