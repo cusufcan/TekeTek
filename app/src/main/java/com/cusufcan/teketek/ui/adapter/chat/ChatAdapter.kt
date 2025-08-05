@@ -11,6 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 class ChatAdapter(
     private val scope: CoroutineScope,
     private val recyclerView: RecyclerView,
+    private val onCompletion: () -> Unit = { },
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val messages = mutableListOf<Message>()
 
@@ -38,7 +39,7 @@ class ChatAdapter(
             UserViewHolder(binding)
         } else {
             val binding = ItemMessageAiBinding.inflate(inflater, parent, false)
-            AiViewHolder(binding, scope, recyclerView)
+            AiViewHolder(binding, scope, recyclerView, onCompletion)
         }
     }
 

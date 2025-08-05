@@ -26,6 +26,7 @@ import com.cusufcan.teketek.data.model.DebateRequest
 import com.cusufcan.teketek.databinding.FragmentDebateBinding
 import com.cusufcan.teketek.domain.model.Message
 import com.cusufcan.teketek.ui.adapter.chat.ChatAdapter
+import com.cusufcan.teketek.ui.event.DebateUiEvent
 import com.cusufcan.teketek.ui.viewmodel.DebateViewModel
 import com.cusufcan.teketek.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -80,7 +81,13 @@ class DebateFragment : Fragment() {
     }
 
     private fun bindAdapter() {
-        chatAdapter = ChatAdapter(lifecycleScope, recyclerView)
+        chatAdapter = ChatAdapter(lifecycleScope, recyclerView) {
+            sendButton.isEnabled = true
+            val isFinished = viewModel.eventFlow.value is DebateUiEvent.FinishDebate
+            if (isFinished) {
+                finishDebate()
+            }
+        }
         recyclerView.adapter = chatAdapter
     }
 
@@ -88,16 +95,18 @@ class DebateFragment : Fragment() {
         bindBackPressed()
 
         sendButton.setOnClickListener {
+            if (viewModel.eventFlow.value is DebateUiEvent.FinishDebate) {
+                val action = DebateFragmentDirections.actionDebateFragmentToSummaryFragment()
+                findNavController().navigate(action)
+                return@setOnClickListener
+            }
+
             val userMessage = messageEditText.text.toString().trim()
             if (userMessage.isNotEmpty()) {
                 viewModel.sendUserMessage(DebateRequest(userMessage))
 
                 messageEditText.text.clear()
-                messageEditText.clearFocus()
-
-                val imm =
-                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(view?.windowToken, 0)
+                clearFocus()
             }
         }
 
@@ -135,7 +144,6 @@ class DebateFragment : Fragment() {
 
                         is Resource.Success -> {
                             hideTypingIndicator()
-                            sendButton.isEnabled = true
                             val messageList = resource.data
                             if (messageList.isEmpty()) {
                                 binding.textEmpty.visibility = View.VISIBLE
@@ -155,6 +163,11 @@ class DebateFragment : Fragment() {
                     }
                 }
             }
+
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel
+            }
+
         }
     }
 
@@ -175,6 +188,20 @@ class DebateFragment : Fragment() {
             typingAnimation.cancelAnimation()
             typingAnimation.visibility = View.GONE
         }.start()
+    }
+
+    private fun finishDebate() {
+        messageEditText.hint = getString(R.string.debate_finished)
+        messageEditText.isEnabled = false
+        sendButton.setImageResource(R.drawable.ic_check)
+    }
+
+    private fun clearFocus() {
+        messageEditText.clearFocus()
+
+        val imm =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
     override fun onDestroyView() {

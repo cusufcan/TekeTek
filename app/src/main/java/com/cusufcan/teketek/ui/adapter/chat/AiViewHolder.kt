@@ -12,6 +12,7 @@ class AiViewHolder(
     private val binding: ItemMessageAiBinding,
     private val scope: CoroutineScope,
     private val recyclerView: RecyclerView,
+    private val onCompletion: () -> Unit,
 ) : RecyclerView.ViewHolder(binding.root) {
     private var typingJob: Job? = null
 
@@ -27,6 +28,7 @@ class AiViewHolder(
                     recyclerView.scrollToPosition(absoluteAdapterPosition)
                 }
                 message.animated = true
+                onCompletion()
             }
         }
     }

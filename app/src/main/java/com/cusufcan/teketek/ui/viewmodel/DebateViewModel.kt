@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.cusufcan.teketek.data.model.DebateRequest
 import com.cusufcan.teketek.domain.model.Message
 import com.cusufcan.teketek.domain.usecase.GetCounterArgumentUseCase
+import com.cusufcan.teketek.ui.event.DebateUiEvent
 import com.cusufcan.teketek.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,6 +20,11 @@ class DebateViewModel @Inject constructor(
 ) : ViewModel() {
     private val _uiState = MutableStateFlow<Resource<List<Message>>>(Resource.Success(emptyList()))
     val uiState: StateFlow<Resource<List<Message>>> get() = _uiState.asStateFlow()
+
+    private val _eventFlow = MutableStateFlow<DebateUiEvent?>(null)
+    val eventFlow: StateFlow<DebateUiEvent?> get() = _eventFlow.asStateFlow()
+
+    private var roundCount = 0
 
     fun sendUserMessage(request: DebateRequest) {
         val currentMessages = (_uiState.value as? Resource.Success)?.data ?: emptyList()
@@ -36,6 +42,11 @@ class DebateViewModel @Inject constructor(
                         aiReply.counterArgument, fromAI = true
                     )
                 )
+
+                roundCount++
+                if (roundCount >= 3) {
+                    _eventFlow.value = DebateUiEvent.FinishDebate
+                }
             } catch (e: Exception) {
                 _uiState.value = Resource.Error("Hata oluştu: ${e.localizedMessage}")
             }
