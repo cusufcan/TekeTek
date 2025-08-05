@@ -5,7 +5,7 @@ import com.cusufcan.teketek.data.model.DebateResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface GeminiApi {
+interface DebateService {
     @POST("api/debate")
     suspend fun getCounterArgument(@Body request: DebateRequest): DebateResponse
 }

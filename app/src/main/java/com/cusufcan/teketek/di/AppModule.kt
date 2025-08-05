@@ -1,12 +1,12 @@
 package com.cusufcan.teketek.di
 
 import com.cusufcan.teketek.BuildConfig
-import com.cusufcan.teketek.data.remote.GeminiApi
+import com.cusufcan.teketek.data.remote.DebateService
 import com.cusufcan.teketek.data.remote.TopicService
 import com.cusufcan.teketek.data.repository.DebateRepositoryImpl
-import com.cusufcan.teketek.data.repository.GeminiRepositoryImpl
+import com.cusufcan.teketek.data.repository.TopicRepositoryImpl
 import com.cusufcan.teketek.domain.repository.DebateRepository
-import com.cusufcan.teketek.domain.repository.GeminiRepository
+import com.cusufcan.teketek.domain.repository.TopicRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
@@ -25,29 +25,29 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideRetrofit(): Retrofit = Retrofit.Builder().baseUrl(BuildConfig.BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create()).build()
+
+    @Provides
+    @Singleton
     fun provideTopicService(firestore: FirebaseFirestore): TopicService {
         return TopicService(firestore)
     }
 
     @Provides
     @Singleton
-    fun provideDebateRepository(topicService: TopicService): DebateRepository {
-        return DebateRepositoryImpl(topicService)
+    fun provideDebateService(retrofit: Retrofit): DebateService =
+        retrofit.create(DebateService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideTopicRepository(topicService: TopicService): TopicRepository {
+        return TopicRepositoryImpl(topicService)
     }
 
     @Provides
     @Singleton
-    fun provideGeminiRepository(api: GeminiApi): GeminiRepository {
-        return GeminiRepositoryImpl(api)
+    fun provideDebateRepository(api: DebateService): DebateRepository {
+        return DebateRepositoryImpl(api)
     }
-
-    @Provides
-    @Singleton
-    fun provideRetrofit(): Retrofit =
-        Retrofit.Builder().baseUrl(BuildConfig.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-
-    @Provides
-    @Singleton
-    fun provideGeminiApi(retrofit: Retrofit): GeminiApi = retrofit.create(GeminiApi::class.java)
 }
