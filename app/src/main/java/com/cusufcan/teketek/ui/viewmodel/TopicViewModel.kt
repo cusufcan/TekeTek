@@ -3,7 +3,7 @@ package com.cusufcan.teketek.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cusufcan.teketek.domain.model.Topic
-import com.cusufcan.teketek.domain.usecase.GetTopicsUseCase
+import com.cusufcan.teketek.domain.usecase.topic.GetTopicsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

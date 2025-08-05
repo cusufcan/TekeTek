@@ -1,4 +1,4 @@
-package com.cusufcan.teketek.domain.usecase
+package com.cusufcan.teketek.domain.usecase.topic
 
 import com.cusufcan.teketek.domain.model.Topic
 import com.cusufcan.teketek.domain.repository.DebateRepository
