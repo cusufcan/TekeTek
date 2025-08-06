@@ -1,32 +1,45 @@
-# Proje Adı
+# TekeTek
 
-Bu proje, [Proje Adı] uygulamasını oluşturmayı amaçlar. Kullanıcılara [temel işlevler veya amaç] sağlar.
+**TekeTek**, bir Android münazara uygulamasıdır. Kullanıcılara yapay zekâ destekli karşılıklı tartışma deneyimi sunar.
+
+BTK AI Hackathon 2025 için geliştirilmiştir.
+
+Kullanıcılar belirlenen konular üzerinde AI botu ile birebir münazaraya katılabilir, tartışmanın özetini görebilir ve kendi girmiş olduğu konular ile istediği kadar münazara yapıp kendi eksik ve güçlü yanlarını görebilir.
 
 ---
 
 ## Özellikler
 
-- [Ana özellik 1]  
-- [Ana özellik 2]  
-- [Ana özellik 3]
+- **Yapay zekâ ile münazara** — TekeTek Gemini AI botu ile belirlenen konu üzerinde tartışma yapabilirsiniz.
+- **Canlı konu ekleme** — Kullanıcılar kendi eklediği münazara konuları ile istediği herhangi bir konuda Gemini AI ile münazara edebilir.
+- **Anlık sohbet deneyimi** — Mesaj tabanlı, hızlı ve kesintisiz münazara akışı.
+- **Tartışma özeti** — Münazara bitiminde güçlü/eksik noktalarınızı gösteren özet.
+- **Koyu ve açık tema desteği** — Kullanıcı tercihine göre otomatik tema geçişi.
 
 ---
 
 ## Ekran Görüntüleri
 
-1. **Ana Sayfa**  
-![Ana Sayfa](https://via.placeholder.com/300)
+![TekeTekLight](https://github.com/user-attachments/assets/0871c82c-6167-4dfd-bc29-50e838f689d3)
 
-2. **Kullanıcı Profil Sayfası**  
-![Profil Sayfası](https://via.placeholder.com/300)
+![TekeTekDark](https://github.com/user-attachments/assets/8368376a-14f9-43be-8bc2-e3c8b2380b25)
 
 ---
 
 ## Kullanılan Kütüphaneler
 
-- **Android Jetpack**: Açıklama...
-- **Retrofit**: Açıklama...
-- **Firebase**: Açıklama...
+- **Ksp**: Kotlin Symbol Processing ile compile-time annotation işlemleri.  
+- **Kotlin Serialization**: JSON veri dönüşümleri için hızlı ve güvenli çözüm.  
+- **Kotlin Coroutines**: Asenkron işlemler ve akış yönetimi.  
+- **Kotlin Parcelize**: Model nesnelerinin kolayca parcelable yapılmasını sağlar.  
+- **Firebase Firestore**: Gerçek zamanlı veritabanı ve senkronizasyon.  
+- **Jetpack Navigation**: Fragment geçişlerini yönetir.  
+- **Navigation Safeargs**: Type-safe argüman geçişleri sağlar.  
+- **Lifecycle (MVVM)**: ViewModel, LiveData ve lifecycle-aware yapılar.  
+- **Hilt**: Dependency Injection yönetimi.  
+- **Retrofit**: API istekleri için HTTP istemcisi.  
+- **Lottie**: Animasyon gösterimi.  
+- **Glide**: Görsel yükleme ve önbellekleme.  
 
 ---
 
@@ -34,13 +47,36 @@ Bu proje, [Proje Adı] uygulamasını oluşturmayı amaçlar. Kullanıcılara [t
 
 ```
 /app
-   /src
-      /main
-         /java
-            com.example.appname    # Ana uygulama kodları
-         /res
-            layout                 # XML tasarımları
-            drawable               # Görsel kaynaklar
+  /data
+    /model
+      /debate_end
+      /debate_next
+      /debate_start
+    /remote
+    /repository
+  /di
+  /domain
+    /model
+    /repository
+    /usecase
+      /debate
+      /topic
+  /ui
+    /adapter
+      /chat
+      /summary
+      /topic
+    /event
+    /main
+    /presentation
+      /add_topic
+      /alert
+      /debate
+      /home
+      /summary
+      /topic
+    /viewmodel
+  /util
 ```
 
 ---
