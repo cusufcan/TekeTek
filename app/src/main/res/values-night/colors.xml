@@ -4,4 +4,9 @@
 
     <color name="ai_message">#2C2C2C</color>
     <color name="message_input_background">#1E1E1E</color>
+
+    <color name="strength_card_bg">#003366</color>
+    <color name="strength_text">#D0E8FF</color>
+    <color name="weakness_card_bg">#B71C1C</color>
+    <color name="weakness_text">#FFCDD2</color>
 </resources>

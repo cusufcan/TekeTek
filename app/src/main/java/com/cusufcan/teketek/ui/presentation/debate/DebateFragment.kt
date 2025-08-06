@@ -84,6 +84,7 @@ class DebateFragment : Fragment() {
     private fun bindAdapter() {
         chatAdapter = ChatAdapter(lifecycleScope, recyclerView) {
             sendButton.isEnabled = true
+            messageEditText.isEnabled = true
             val isFinished = viewModel.eventFlow.value is DebateUiEvent.FinishDebate
             if (isFinished) {
                 finishDebate()
@@ -151,28 +152,31 @@ class DebateFragment : Fragment() {
                 viewModel.uiState.collectLatest { resource ->
                     when (resource) {
                         is Resource.Loading -> {
-                            AppLogger.d("Loading State")
                             showTypingIndicator()
                             sendButton.isEnabled = false
+                            messageEditText.isEnabled = false
                         }
 
                         is Resource.Success -> {
                             hideTypingIndicator()
                             val messageList = resource.data
-                            AppLogger.d("Success State: $messageList")
                             if (messageList.isEmpty()) {
                                 binding.textEmpty.visibility = View.VISIBLE
                             } else {
                                 binding.textEmpty.visibility = View.GONE
                                 chatAdapter.submitMessage(messageList.last())
                                 recyclerView.smoothScrollToPosition(chatAdapter.itemCount - 1)
+
+                                if (messageList.last().fromAI) {
+                                    AppLogger.d(messageList.last().text)
+                                }
                             }
                         }
 
                         is Resource.Error -> {
-                            AppLogger.d("Error State: ${resource.message}")
                             hideTypingIndicator()
                             sendButton.isEnabled = true
+                            messageEditText.isEnabled = true
                             chatAdapter.submitMessage(Message(resource.message, true))
                             recyclerView.smoothScrollToPosition(chatAdapter.itemCount - 1)
                         }

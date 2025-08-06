@@ -16,7 +16,9 @@
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/topicFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_topicFragment_to_addTopicFragment"
             app:destination="@id/addTopicFragment" />
@@ -37,7 +39,7 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
-            app:popUpTo="@id/homeFragment"
+            app:popUpTo="@id/debateFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_debateFragment_to_alertDialogFragment"
@@ -67,6 +69,9 @@
         <argument
             android:name="summary"
             app:argType="com.cusufcan.teketek.domain.model.Summary" />
+        <action
+            android:id="@+id/action_summaryFragment_to_alertDialogFragment"
+            app:destination="@id/alertDialogFragment" />
     </fragment>
     <dialog
         android:id="@+id/alertDialogFragment"
@@ -93,6 +98,8 @@
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/addTopicFragment"
+            app:popUpToInclusive="true" />
     </dialog>
 </navigation>

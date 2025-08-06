@@ -19,6 +19,8 @@
     <string name="topic_name">Konu İsmi</string>
     <string name="add">Ekle</string>
     <string name="debate_finished">Münazara Bitmiştir</string>
-    <string name="strengths">Güçlü Yönler</string>
-    <string name="weaknesses">Zayıf Yönler</string>
+    <string name="strengths">💪 Güçlü Yönler</string>
+    <string name="weaknesses">⚠️ Zayıf Yönler</string>
+    <string name="quit_app_title">Uygulamadan Çık</string>
+    <string name="quit_app_desc">Uygulamadan çıkmak istediğinize emin misiniz?</string>
 </resources>

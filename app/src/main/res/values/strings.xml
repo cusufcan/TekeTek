@@ -9,6 +9,8 @@
     <!-- Alert Dialog -->
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="quit_app_title">Quit App</string>
+    <string name="quit_app_desc">Are you sure you want to quit the app?</string>
     <string name="end_debate_title">End the Debate</string>
     <string name="end_debate_desc">Are you sure you want to end the debate?</string>
 
@@ -24,6 +26,6 @@
     <string name="topic_name">Topic Name</string>
     <string name="add">Add</string>
     <string name="debate_finished">Debate Finished</string>
-    <string name="strengths">Strengths</string>
-    <string name="weaknesses">Weaknesses</string>
+    <string name="strengths">💪 Strengths</string>
+    <string name="weaknesses">⚠️ Weaknesses</string>
 </resources>

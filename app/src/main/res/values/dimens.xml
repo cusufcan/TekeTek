@@ -18,4 +18,5 @@
 
     <dimen name="height_md">56dp</dimen>
     <dimen name="height_max">100dp</dimen>
+    <dimen name="height_max_lg">175dp</dimen>
 </resources>

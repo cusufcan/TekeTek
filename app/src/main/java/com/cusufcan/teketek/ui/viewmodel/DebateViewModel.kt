@@ -61,7 +61,10 @@ class DebateViewModel @Inject constructor(
                         throw Exception("Counter argument is null or empty")
                     }
 
-                    val updatedMessages = newMessages + Message(res.counterArgument, fromAI = true)
+                    val updatedMessages = newMessages + Message(
+                        res.counterArgument.trim(),
+                        fromAI = true,
+                    )
                     _uiState.value = Resource.Success(updatedMessages)
 
                     if (res.turn >= 3) {
