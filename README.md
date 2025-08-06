@@ -15,6 +15,8 @@ BTK AI Hackathon 2025 kapsamında geliştirilmiştir.
 Teke Tek uygulamasının backend servisi için [TekeTek-Backend GitHub deposuna](https://github.com/cusufcan/TekeTek-Backend) göz atabilirsiniz.  
 Bu servis münazara başlatma, devam ettirme ve sonlandırma işlemlerini sağlar.
 
+---
+
 ## Özellikler
 
 - **Yapay zekâ ile münazara** — TekeTek Gemini AI botu ile belirlenen konu üzerinde tartışma yapabilirsiniz.
