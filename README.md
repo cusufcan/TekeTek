@@ -1,6 +1,6 @@
 # TekeTek
 
-<img src="https://github.com/user-attachments/assets/a3a7a3d7-684c-43aa-a06e-c33e146ef316" alt="TekeTekLogo" width="128" />
+<img width="128" alt="TekeTekLogo" src="https://github.com/user-attachments/assets/a7f76d85-7518-40bb-bfe9-bb6b2d8e6d67" />
 
 <br>
 
