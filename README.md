@@ -1,6 +1,6 @@
 # TekeTek
 
-<img src="https://github.com/user-attachments/assets/a3a7a3d7-684c-43aa-a06e-c33e146ef316" alt="TekeTekLight" width="128"/>
+<img src="https://github.com/user-attachments/assets/a3a7a3d7-684c-43aa-a06e-c33e146ef316" alt="TekeTekLogo" width="128"/>
 
 **TekeTek**, bir Android münazara uygulamasıdır. Kullanıcılara yapay zekâ destekli karşılıklı tartışma deneyimi sunar.
 
