@@ -1,6 +1,7 @@
 package com.cusufcan.teketek.di
 
 import com.cusufcan.teketek.BuildConfig
+import com.cusufcan.teketek.data.remote.DebateRemoteDataSource
 import com.cusufcan.teketek.data.remote.DebateService
 import com.cusufcan.teketek.data.remote.TopicService
 import com.cusufcan.teketek.data.repository.DebateRepositoryImpl
@@ -47,7 +48,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideDebateRepository(api: DebateService): DebateRepository {
-        return DebateRepositoryImpl(api)
+    fun provideDebateRepository(debateRemoteDataSource: DebateRemoteDataSource): DebateRepository {
+        return DebateRepositoryImpl(debateRemoteDataSource)
     }
 }

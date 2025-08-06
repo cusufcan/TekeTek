@@ -1,15 +1,24 @@
 package com.cusufcan.teketek.data.repository
 
-import com.cusufcan.teketek.data.model.DebateRequest
-import com.cusufcan.teketek.data.model.DebateResponse
-import com.cusufcan.teketek.data.remote.DebateService
+import com.cusufcan.teketek.data.model.debate_end.DebateEndResponse
+import com.cusufcan.teketek.data.model.debate_next.DebateNextResponse
+import com.cusufcan.teketek.data.model.debate_start.DebateStartResponse
+import com.cusufcan.teketek.data.remote.DebateRemoteDataSource
 import com.cusufcan.teketek.domain.repository.DebateRepository
 import javax.inject.Inject
 
 class DebateRepositoryImpl @Inject constructor(
-    private val api: DebateService,
+    private val debateRemoteDataSource: DebateRemoteDataSource,
 ) : DebateRepository {
-    override suspend fun getCounterArgument(request: DebateRequest): DebateResponse {
-        return api.getCounterArgument(request)
+    override suspend fun startDebate(topic: String): DebateStartResponse {
+        return debateRemoteDataSource.startDebate((topic))
+    }
+
+    override suspend fun nextDebate(debateId: String, userArgument: String): DebateNextResponse {
+        return debateRemoteDataSource.nextDebate(debateId, userArgument)
+    }
+
+    override suspend fun endDebate(debateId: String): DebateEndResponse {
+        return debateRemoteDataSource.endDebate(debateId)
     }
 }

@@ -22,12 +22,12 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.cusufcan.teketek.R
-import com.cusufcan.teketek.data.model.DebateRequest
 import com.cusufcan.teketek.databinding.FragmentDebateBinding
 import com.cusufcan.teketek.domain.model.Message
 import com.cusufcan.teketek.ui.adapter.chat.ChatAdapter
 import com.cusufcan.teketek.ui.event.DebateUiEvent
 import com.cusufcan.teketek.ui.viewmodel.DebateViewModel
+import com.cusufcan.teketek.util.AppLogger
 import com.cusufcan.teketek.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -66,7 +66,7 @@ class DebateFragment : Fragment() {
         bindViews()
         bindEvents()
         bindAdapter()
-        bindArgs()
+        startDebate()
         observeData()
     }
 
@@ -103,7 +103,7 @@ class DebateFragment : Fragment() {
 
             val userMessage = messageEditText.text.toString().trim()
             if (userMessage.isNotEmpty()) {
-                viewModel.sendUserMessage(DebateRequest(userMessage))
+                viewModel.next(userMessage)
 
                 messageEditText.text.clear()
                 clearFocus()
@@ -127,9 +127,10 @@ class DebateFragment : Fragment() {
         }
     }
 
-    private fun bindArgs() {
+    private fun startDebate() {
         val topic = args.topic
         topicText.text = topic.title
+        viewModel.start(topic.title)
     }
 
     private fun observeData() {
@@ -138,6 +139,7 @@ class DebateFragment : Fragment() {
                 viewModel.uiState.collectLatest { resource ->
                     when (resource) {
                         is Resource.Loading -> {
+                            AppLogger.d("Loading State")
                             showTypingIndicator()
                             sendButton.isEnabled = false
                         }
@@ -145,6 +147,7 @@ class DebateFragment : Fragment() {
                         is Resource.Success -> {
                             hideTypingIndicator()
                             val messageList = resource.data
+                            AppLogger.d("Success State: $messageList")
                             if (messageList.isEmpty()) {
                                 binding.textEmpty.visibility = View.VISIBLE
                             } else {
@@ -155,6 +158,7 @@ class DebateFragment : Fragment() {
                         }
 
                         is Resource.Error -> {
+                            AppLogger.d("Error State: ${resource.message}")
                             hideTypingIndicator()
                             sendButton.isEnabled = true
                             chatAdapter.submitMessage(Message(resource.message, true))

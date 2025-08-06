@@ -2,9 +2,10 @@ package com.cusufcan.teketek.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cusufcan.teketek.data.model.DebateRequest
 import com.cusufcan.teketek.domain.model.Message
-import com.cusufcan.teketek.domain.usecase.GetCounterArgumentUseCase
+import com.cusufcan.teketek.domain.usecase.debate.EndDebateUseCase
+import com.cusufcan.teketek.domain.usecase.debate.NextDebateUseCase
+import com.cusufcan.teketek.domain.usecase.debate.StartDebateUseCase
 import com.cusufcan.teketek.ui.event.DebateUiEvent
 import com.cusufcan.teketek.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,39 +17,85 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DebateViewModel @Inject constructor(
-    private val getCounterArgumentUseCase: GetCounterArgumentUseCase,
+    private val startDebate: StartDebateUseCase,
+    private val nextDebate: NextDebateUseCase,
+    private val endDebate: EndDebateUseCase,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow<Resource<List<Message>>>(Resource.Success(emptyList()))
-    val uiState: StateFlow<Resource<List<Message>>> get() = _uiState.asStateFlow()
+    val uiState: StateFlow<Resource<List<Message>>> = _uiState.asStateFlow()
 
     private val _eventFlow = MutableStateFlow<DebateUiEvent?>(null)
-    val eventFlow: StateFlow<DebateUiEvent?> get() = _eventFlow.asStateFlow()
+    val eventFlow: StateFlow<DebateUiEvent?> = _eventFlow.asStateFlow()
 
-    private var roundCount = 0
+    private var debateId: String? = null
 
-    fun sendUserMessage(request: DebateRequest) {
-        val currentMessages = (_uiState.value as? Resource.Success)?.data ?: emptyList()
-        _uiState.value =
-            Resource.Success(currentMessages + Message(request.userArgument, fromAI = false))
-
+    fun start(topic: String) {
         viewModelScope.launch {
-            _uiState.value = Resource.Loading()
-
             try {
-                val aiReply = getCounterArgumentUseCase(request)
-                val updatedMessages = (_uiState.value as? Resource.Success)?.data ?: emptyList()
-                _uiState.value = Resource.Success(
-                    updatedMessages + Message(
-                        aiReply.counterArgument, fromAI = true
-                    )
-                )
-
-                roundCount++
-                if (roundCount >= 3) {
-                    _eventFlow.value = DebateUiEvent.FinishDebate
-                }
+                val res = startDebate(topic)
+                debateId = res.debateId
+                _uiState.value = Resource.Success(emptyList())
             } catch (e: Exception) {
-                _uiState.value = Resource.Error("Hata oluştu: ${e.localizedMessage}")
+                _uiState.value = Resource.Error(
+                    message = "Başlama hatası: ${e.localizedMessage}",
+                    data = emptyList(),
+                )
+            }
+        }
+    }
+
+    fun next(userArgument: String) {
+        debateId?.let { id ->
+            val currentMessages = (_uiState.value as? Resource.Success)?.data ?: emptyList()
+
+            val newMessages = currentMessages + Message(userArgument, fromAI = false)
+            _uiState.value = Resource.Success(newMessages)
+
+            viewModelScope.launch {
+                _uiState.value = Resource.Loading(newMessages)
+
+                try {
+                    val res = nextDebate(id, userArgument)
+
+                    if (res.counterArgument.isNullOrEmpty() || res.turn == null) {
+                        throw Exception("Counter argument is null or empty")
+                    }
+
+                    val updatedMessages = newMessages + Message(res.counterArgument, fromAI = true)
+                    _uiState.value = Resource.Success(updatedMessages)
+
+                    if (res.turn >= 3) {
+                        end()
+                    }
+                } catch (e: Exception) {
+                    _uiState.value = Resource.Error(
+                        message = "Tur hatası: ${e.localizedMessage}",
+                        data = newMessages,
+                    )
+                }
+            }
+        }
+    }
+
+    fun end() {
+        viewModelScope.launch {
+            debateId?.let { id ->
+                try {
+                    val res = endDebate(id)
+                    _eventFlow.value = DebateUiEvent.FinishDebate(
+                        debateId = id,
+                        summary = res.summary,
+                        strengths = res.strengths,
+                        weaknesses = res.weaknesses,
+                        message = res.message,
+                    )
+                    debateId = null
+                } catch (e: Exception) {
+                    _uiState.value = Resource.Error(
+                        message = "Bitirme hatası: ${e.localizedMessage}",
+                        data = (_uiState.value as? Resource.Success)?.data ?: emptyList(),
+                    )
+                }
             }
         }
     }
