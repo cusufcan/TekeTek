@@ -19,4 +19,6 @@
     <string name="topic_name">Konu İsmi</string>
     <string name="add">Ekle</string>
     <string name="debate_finished">Münazara Bitmiştir</string>
+    <string name="strengths">Güçlü Yönler</string>
+    <string name="weaknesses">Zayıf Yönler</string>
 </resources>
