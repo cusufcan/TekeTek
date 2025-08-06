@@ -4,7 +4,9 @@
 
 <br>
 
-**TekeTek**, bir Android münazara uygulamasıdır. Kullanıcılara yapay zekâ destekli karşılıklı tartışma deneyimi sunar. Kullanıcılar belirlenen konular üzerinde AI botu ile birebir münazaraya katılabilir, tartışmanın özetini görebilir ve kendi girmiş olduğu konular ile istediği kadar münazara yapıp kendi eksik ve güçlü yanlarını görebilir.
+**TekeTek**, bir Android münazara uygulamasıdır.
+
+Kullanıcılara yapay zekâ destekli karşılıklı tartışma deneyimi sunar. Kullanıcılar belirlenen konular üzerinde AI botu ile birebir münazaraya katılabilir, tartışmanın özetini görebilir ve kendi girmiş olduğu konular ile istediği kadar münazara yapıp kendi eksik ve güçlü yanlarını görebilir.
 
 BTK AI Hackathon 2025 kapsamında geliştirilmiştir.
 
