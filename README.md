@@ -1,12 +1,12 @@
 # TekeTek
 
-<img src="https://github.com/user-attachments/assets/a3a7a3d7-684c-43aa-a06e-c33e146ef316" alt="TekeTekLogo" width="128"/>
+<img src="https://github.com/user-attachments/assets/a3a7a3d7-684c-43aa-a06e-c33e146ef316" alt="TekeTekLogo" width="128" />
 
-**TekeTek**, bir Android münazara uygulamasıdır. Kullanıcılara yapay zekâ destekli karşılıklı tartışma deneyimi sunar.
+<br>
 
-BTK AI Hackathon 2025 için geliştirilmiştir.
+**TekeTek**, bir Android münazara uygulamasıdır. Kullanıcılara yapay zekâ destekli karşılıklı tartışma deneyimi sunar. Kullanıcılar belirlenen konular üzerinde AI botu ile birebir münazaraya katılabilir, tartışmanın özetini görebilir ve kendi girmiş olduğu konular ile istediği kadar münazara yapıp kendi eksik ve güçlü yanlarını görebilir.
 
-Kullanıcılar belirlenen konular üzerinde AI botu ile birebir münazaraya katılabilir, tartışmanın özetini görebilir ve kendi girmiş olduğu konular ile istediği kadar münazara yapıp kendi eksik ve güçlü yanlarını görebilir.
+BTK AI Hackathon 2025 kapsamında geliştirilmiştir.
 
 ---
 
