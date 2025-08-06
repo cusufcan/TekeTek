@@ -24,6 +24,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.cusufcan.teketek.R
 import com.cusufcan.teketek.databinding.FragmentDebateBinding
 import com.cusufcan.teketek.domain.model.Message
+import com.cusufcan.teketek.domain.model.Summary
 import com.cusufcan.teketek.ui.adapter.chat.ChatAdapter
 import com.cusufcan.teketek.ui.event.DebateUiEvent
 import com.cusufcan.teketek.ui.viewmodel.DebateViewModel
@@ -96,7 +97,18 @@ class DebateFragment : Fragment() {
 
         sendButton.setOnClickListener {
             if (viewModel.eventFlow.value is DebateUiEvent.FinishDebate) {
-                val action = DebateFragmentDirections.actionDebateFragmentToSummaryFragment()
+                val uiEvent = viewModel.eventFlow.value as DebateUiEvent.FinishDebate
+                val summary = Summary(
+                    debateId = uiEvent.debateId,
+                    summary = uiEvent.summary,
+                    strengths = uiEvent.strengths,
+                    weaknesses = uiEvent.weaknesses,
+                    message = uiEvent.message,
+                )
+                val action = DebateFragmentDirections.actionDebateFragmentToSummaryFragment(
+                    topic = args.topic,
+                    summary = summary,
+                )
                 findNavController().navigate(action)
                 return@setOnClickListener
             }

@@ -60,7 +60,14 @@
         android:id="@+id/summaryFragment"
         android:name="com.cusufcan.teketek.ui.presentation.summary.SummaryFragment"
         android:label="fragment_summary"
-        tools:layout="@layout/fragment_summary" />
+        tools:layout="@layout/fragment_summary">
+        <argument
+            android:name="topic"
+            app:argType="com.cusufcan.teketek.domain.model.Topic" />
+        <argument
+            android:name="summary"
+            app:argType="com.cusufcan.teketek.domain.model.Summary" />
+    </fragment>
     <dialog
         android:id="@+id/alertDialogFragment"
         android:name="com.cusufcan.teketek.ui.presentation.alert.AlertDialogFragment"
